@@ -1,1 +1,1 @@
-# SQL
+# SQL Practices with Case Studies
