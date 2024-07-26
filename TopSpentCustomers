@@ -18,7 +18,7 @@ with total_spent as (
         rank() over(PARTITION by year order by year ASC, total_spent DESC) as ranking
   from total_spent)
 
-# Celect top 3 customers with top spent from the 2nd CTE 'ranking_by_year' using WHERE clause     
+# Select top 3 customers with top spent from the 2nd CTE 'ranking_by_year' using WHERE clause     
 select * from ranking_by_year where ranking < 4;
 
 # Sample 
