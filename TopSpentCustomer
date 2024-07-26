@@ -1,0 +1,36 @@
+# phpMyAdmin demo - MySQL/sakila/c/		https://demo.phpmyadmin.net/master-config/public/index.php?route=/table/sql&db=sakila&table=payment
+# Showing rows 0 -  9 (10 total, Query took 0.0824 seconds.)
+
+# Create 1st CTE to aggregate 'total spent'
+# Create 2nd CTE to rank 'total spent' by year
+with total_spent as (
+	select sum(p.amount) as total_spent, 
+    		year(p.payment_date) as year,
+    		c.last_name as last_name
+  from payment p
+  join customer c
+  on p.customer_id = c.customer_id
+  group by year, last_name
+  order by year asc, last_name desc),
+    
+  ranking_by_year as(
+  select *,
+        rank() over(PARTITION by year order by year ASC, total_spent DESC) as ranking
+  from total_spent)
+
+# Celect top 3 customers with top spent from the 2nd CTE 'ranking_by_year' using WHERE clause     
+select * from ranking_by_year where ranking < 4;
+
+# Sample 
+# total_spent	year	last_name	ranking	
+# 221.55	2005	SEAL	1	
+# 216.54	2005	HUNT	2	
+# 195.58	2005	SHAW	3	
+# 9.98	2006	BAILEY	1	
+# 8.97	2006	SANDERS	2	
+# 7.98	2006	WADE	3	
+# 7.98	2006	SPENCER	3	
+# 7.98	2006	NGO	3	
+# 7.98	2006	MORRIS	3	
+# 7.98	2006	KNIGHT	3	
+
