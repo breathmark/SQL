@@ -1,4 +1,4 @@
-## Who are the most popular actors in rental? 
+## Who are the most popular actors in rentals? 
 
 phpMyAdmin demo - MariaDB/sakila/a/		https://demo.phpmyadmin.net/master-config/public/index.php?route=/sql&db=sakila&table=a&sql_query=SELECT+count%28f.film_id%29+as+rented_total%2C+year%28r.rental_date%29+as+Year%2Ca.last_name+as+Actor_LastName%2C+a.first_name+as+Actor_FirstName%0D%0AFROM+rental+r%0D%0AJOIN+inventory+i%0D%0AON+r.inventory_id+%3D+i.inventory_id%0D%0AJOIN+film+f%0D%0AON+i.film_id+%3D+f.film_id%0D%0AJOIN+film_actor+fa%0D%0AON+f.film_id+%3D+fa.film_id%0D%0AJOIN+actor+a%0D%0AON+a.actor_id+%3D+fa.actor_id%0D%0Agroup+by+Year%2C+Actor_LastName+%0AORDER+BY+%60Year%60+DESC+&sql_signature=80fc4b3fa268d782fe22fb774a13ab2415fa39be88963c2ff13fb130d54692ea&session_max_rows=25&is_browse_distinct=0&server=1
 
