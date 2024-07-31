@@ -1,0 +1,47 @@
+## Who are the most popular actors in rental? 
+
+phpMyAdmin demo - MariaDB/sakila/a/		https://demo.phpmyadmin.net/master-config/public/index.php?route=/sql&db=sakila&table=a&sql_query=SELECT+count%28f.film_id%29+as+rented_total%2C+year%28r.rental_date%29+as+Year%2Ca.last_name+as+Actor_LastName%2C+a.first_name+as+Actor_FirstName%0D%0AFROM+rental+r%0D%0AJOIN+inventory+i%0D%0AON+r.inventory_id+%3D+i.inventory_id%0D%0AJOIN+film+f%0D%0AON+i.film_id+%3D+f.film_id%0D%0AJOIN+film_actor+fa%0D%0AON+f.film_id+%3D+fa.film_id%0D%0AJOIN+actor+a%0D%0AON+a.actor_id+%3D+fa.actor_id%0D%0Agroup+by+Year%2C+Actor_LastName+%0AORDER+BY+%60Year%60+DESC+&sql_signature=80fc4b3fa268d782fe22fb774a13ab2415fa39be88963c2ff13fb130d54692ea&session_max_rows=25&is_browse_distinct=0&server=1
+
+   Showing rows 0 - 24 (240 total, Query took 0.1183 seconds.)
+
+
+SELECT count(f.film_id) as rented_total, year(r.rental_date) as Year,a.last_name as Actor_LastName, a.first_name as Actor_FirstName
+FROM rental r
+JOIN inventory i
+ON r.inventory_id = i.inventory_id
+JOIN film f
+ON i.film_id = f.film_id
+JOIN film_actor fa
+ON f.film_id = fa.film_id
+JOIN actor a
+ON a.actor_id = fa.actor_id
+group by Year, Actor_LastName 
+ORDER BY `Year` ASC, rented_total Desc;
+
+
+rented_total   	Year   	Actor_LastName	Actor_FirstName	
+2125	2005	KILMER	OPRAH	
+2091	2005	NOLTE	WARREN	
+1757	2005	TEMPLE	MENA	
+1593	2005	DEGENERES	JODIE	
+1565	2005	KEITEL	MARY	
+1464	2005	BERRY	CHRISTOPHER	
+1459	2005	TORN	KENNETH	
+1444	2005	HOFFMAN	KENNETH	
+1408	2005	GUINESS	PENELOPE	
+1379	2005	GARLAND	HUMPHREY	
+1370	2005	HOPKINS	MORGAN	
+1369	2005	AKROYD	CHRISTIAN	
+1318	2005	WILLIS	GENE	
+1283	2005	JOHANSSON	RAY	
+1252	2005	WILLIAMS	MORGAN	
+1235	2005	ALLEN	MERYL	
+1217	2005	HARRIS	CATE	
+1174	2005	ZELLWEGER	MINNIE	
+1148	2005	BOLGER	MICHAEL	
+1088	2005	DAVIS	SUSAN	
+1074	2005	GOODING	GREGORY	
+1051	2005	TRACY	LUCILLE	
+1031	2005	TANDY	IAN	
+1028	2005	PECK	SANDRA	
+1016	2005	CRAWFORD	RIP	
