@@ -1,0 +1,47 @@
+## What are the popular film categories in rentals?
+
+phpMyAdmin demo - MariaDB/sakila/c/		https://demo.phpmyadmin.net/master-config/public/index.php?route=/sql&pos=0&db=sakila&table=category&server=1
+
+   Showing rows 0 - 24 (32 total, Query took 0.0480 seconds.)
+
+
+SELECT count(f.film_id) as rented_total, year(r.rental_date) as Year, c.name as Category
+FROM rental r
+JOIN inventory i
+ON r.inventory_id = i.inventory_id
+JOIN film f
+ON i.film_id = f.film_id
+JOIN film_category fc
+ON f.film_id = fc.film_id
+JOIN category c
+ON fc.category_id = c.category_id
+group by Year, Category 
+ORDER BY `Year` asc, rented_total desc;
+
+
+rented_total   	Year   	Category	
+1164	2005	Sports	
+1145	2005	Animation	
+1095	2005	Action	
+1093	2005	Sci-Fi	
+1083	2005	Family	
+1053	2005	Drama	
+1044	2005	Documentary	
+1022	2005	Foreign	
+955	2005	Games	
+939	2005	Children	
+932	2005	Comedy	
+930	2005	Classics	
+927	2005	New	
+834	2005	Horror	
+827	2005	Travel	
+819	2005	Music	
+21	2006	Animation	
+17	2006	Action	
+15	2006	Sports	
+14	2006	Games	
+13	2006	New	
+13	2006	Family	
+12	2006	Horror	
+11	2006	Foreign	
+11	2006	Music	
